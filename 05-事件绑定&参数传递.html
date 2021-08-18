@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{num}}</div>
+        <div>
+            <button v-on:click='num++'>1</button>
+            <!-- v-on:简写成 @ -->
+            <button @click='num++'>2</button>
+            <!-- -------------------------------------- -->
+            <!-- num++应写在vm方法methods里 -->
+            <!-- 两种方法调用函数： -->
+            <!-- 1.直接填写函数名：@click='handle' -->
+            <button @click='handle'>3</button>
+            <!-- 2.调用函数：@click='handle()' -->
+            <button @click='handle(2,2,3,$event)'>点击4</button>
+
+        </div>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                num: 0
+            },
+            methods: {
+                handle: function (a, b, c, event) {
+                    console.log(event.target.tagName);
+                    console.log(event.target.innerHTML);
+
+                    console.log(this.num);
+                    //这里的this是Vue的实例对象vm
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

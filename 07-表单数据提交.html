@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model='username'>
+
+        </div>
+        <div>
+            <input type="password" v-model='password'>
+
+        </div>
+        <div>
+            <input type="button" v-on:click='handleSubmit()' value="提交">
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                password: ''
+            },
+            methods: {
+                handleSubmit: function () {
+
+                    console.log(this.username, this.password);
+                    axios('http://localhost:5500/axios-server', {
+                        //设置请求类型
+                        method: 'post',
+                        //设置url参数
+                        params: {
+                            username: this.username,
+                            password: this.password
+                        },
+
+                        //设置请求头信息
+                        headers: {
+                            username: this.username
+                        },
+                        data: {
+                            //设置请求体参数
+                            username: this.username,
+                            password: this.password
+                        }
+
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

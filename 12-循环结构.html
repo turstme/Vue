@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <ul id="app">
+        <!-- 数组遍历 -->
+        <li v-for='item in fruits'>{{item}}</li>
+        <li v-for='(item,index) in fruits'>{{item+"-------"+index}}</li>
+        <li v-for='(item,index) in fruits'>{{item}} ---- {{index}}</li>
+        <li :key='item.index' v-for='(item,index) in myfurits'>
+            <span>{{item.ename}}</span>
+            <span>{{item.name}}</span>
+        </li>
+
+        <!-- 对象的遍历 -->
+
+        <li v-for='(v,k,i) in student'>{{v,k,i}}</li>
+
+
+    </ul>
+
+    <script>
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                fruits: ['apple', 'banana', 'orange'],
+                myfurits: [{
+                    ename: 'apple',
+                    cname: '苹果'
+                },
+                {
+                    ename: 'banana',
+                    cname: '香蕉'
+                },
+                {
+                    ename: 'orange',
+                    cname: '橘子'
+                }],
+
+                student: {
+                    name: 'lfm',
+                    age: 26,
+                    sex: 'man'
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

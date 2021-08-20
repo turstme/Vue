@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .active {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+
+        .bgc {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 1.对象方法 -->
+        <!-- 键值对形式：类名:空格+is类名(类名首字母大写) -->
+        <div :class="{active: isActive,bgc: isBgc}">测试1</div>
+        <button @click='handle1'>切换1</button>
+        <br>
+        --------------------------------------
+        <br>
+        <!--2.数组方法 -->
+        <div :class="[activeClass,bgcClass]">测试2</div>
+        <button @click='handle2'>切换2</button>
+
+        <!-- 3.简化写法 -->
+        <div :class="arrClasses">测试3</div>
+
+
+        <div :class="objClasses">测试3</div>
+        <button @click='handle3'>切换3</button>
+
+    </div>
+
+    <script>
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                // 1.对象写法
+                isActive: true,
+                isBgc: true,
+                // 2.数组写法
+                activeClass: 'active',
+                bgcClass: 'bgc',
+                // 3.简化写法
+                arrClasses: ['active', 'bgc'],
+                objClasses: {
+                    active: true,
+                    bgc: true
+                }
+            },
+            methods: {
+                handle1: function () {
+                    this.isActive = !this.isActive
+                    this.isBgc = !this.isBgc
+
+                },
+                handle2: function () {
+                    this.activeClass = ''
+                },
+                handle3: function () {
+                    this.objClasses.active = false
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

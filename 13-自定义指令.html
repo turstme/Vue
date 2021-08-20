@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <!-- <div v-color='msg'>1234233</div> -->
+        <input type="text" name="" id="" v-color='msg'>
+        <input type="text" name="" id="" v-focus>
+
+    </div>
+
+    <script>
+        Vue.directive('focus', {
+            inserted: function (el) {
+                // el表示指令所绑定的元素,例如：希望默认光标定格在input上，el就是input
+                el.focus()
+            }
+        })
+
+        Vue.directive('color', {
+            bind: function (el, binding) {
+                //binding返回的是一个包含msg的对象，里面有很多属性:
+                // {name: "color", rawName: "v-color", value: {…}, expression: "msg", modifiers: {…}, …}
+                // def: {bind: ƒ}
+                // expression: "msg"
+                // modifiers: {}
+                // name: "color"
+                // rawName: "v-color"
+                // value:
+                // color: (...)
+                // size: (...)
+                // __ob__: Observer {value: {…}, dep: Dep, vmCount: 0}
+                // get color: ƒ reactiveGetter()
+                // set color: ƒ reactiveSetter(newVal)
+                // get size: ƒ reactiveGetter()
+                // set size: ƒ reactiveSetter(newVal)
+                console.log(binding);
+
+                //binding.value (value:
+                // color: (...)
+                // size: (...)
+                // )
+
+                el.style.backgroundColor = binding.value.color
+            }
+        })
+
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: {
+                    color: 'pink',
+                    size: '10px'
+                }
+
+            },
+            methods: {
+                handle: function () {
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

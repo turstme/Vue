@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        #app {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            float: left;
+            width: 100px;
+            height: 50px;
+            border: 1px solid blue;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li :class="{orange:isOrange===index}" :key="index" v-for="(item,index) in tabHead"
+                @click="orangeBgc(index)">
+                {{item}}
+            </li>
+
+        </ul>
+        <ol>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                tabHead: ['apple', 'orange', 'lemon'],
+                isOrange: null,
+
+
+            },
+            methods: {
+                orangeBgc: function (index) {
+                    this.isOrange = index;
+                },
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

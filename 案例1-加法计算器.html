@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        span {
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>简单计算器</h1>
+        <label for="">数值A:</label>
+        <input type=" text" v-model='A'>
+        <br>
+        <label for="">数值B:</label>
+        <input type="text" v-model='B'>
+        <br>
+        <input v-on:click='handleSum()' type="button" value="计算">
+        <div>计算结果：</div>
+        <span v-text='result'></span>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                A: '',
+                B: '',
+                result: ''
+            },
+            methods: {
+                //这里方法千万不能用箭头函数！！！
+                handleSum: function () {
+                    console.log(this.result, this.A, this.B);
+                    this.result = parseInt(this.A) + parseInt(this.B)
+                }
+            }
+
+
+        })
+
+
+    </script>
+</body>
+
+</html>

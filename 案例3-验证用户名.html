@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <label for="ueserName">用户名:</label>
+        <input type="text" name="" id="ueserName" v-model.lazy='userName'>
+
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                userName: ''
+            },
+            methods: {
+                checkName: function (userName) {
+
+                    axios('http://localhost:5500/axios-server2', {
+                        //设置请求类型
+                        method: 'post',
+                        //设置url参数
+                        params: {
+                            username: this.userName,
+                            // password: this.password
+                        },
+
+                        //设置请求头信息
+                        headers: {
+                            username: this.userName
+                        },
+                        data: {
+                            //设置请求体参数
+                            username: this.userName,
+                            // password: this.password
+                        }
+                            .then(function (response) {
+                                console.log(response);
+                            })
+
+                    })
+
+
+                }
+
+            },
+            watch: {
+                userName: function (val) {
+                    this.checkName(val)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

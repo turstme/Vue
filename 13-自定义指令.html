@@ -30,35 +30,33 @@
                 el.focus()
             }
         })
-
         Vue.directive('color', {
             bind: function (el, binding) {
-                //binding返回的是一个包含msg的对象，里面有很多属性:
-                // {name: "color", rawName: "v-color", value: {…}, expression: "msg", modifiers: {…}, …}
-                // def: {bind: ƒ}
-                // expression: "msg"
-                // modifiers: {}
-                // name: "color"
-                // rawName: "v-color"
-                // value:
-                // color: (...)
-                // size: (...)
-                // __ob__: Observer {value: {…}, dep: Dep, vmCount: 0}
-                // get color: ƒ reactiveGetter()
-                // set color: ƒ reactiveSetter(newVal)
-                // get size: ƒ reactiveGetter()
-                // set size: ƒ reactiveSetter(newVal)
-                console.log(binding);
-
-                //binding.value (value:
-                // color: (...)
-                // size: (...)
-                // )
-
                 el.style.backgroundColor = binding.value.color
             }
         })
 
+        //binding返回的是一个包含msg的对象，里面有很多属性:
+        // {name: "color", rawName: "v-color", value: {…}, expression: "msg", modifiers: {…}, …}
+        // def: {bind: ƒ}
+        // expression: "msg"
+        // modifiers: {}
+        // name: "color"
+        // rawName: "v-color"
+        // value:
+        // color: (...)
+        // size: (...)
+        // __ob__: Observer {value: {…}, dep: Dep, vmCount: 0}
+        // get color: ƒ reactiveGetter()
+        // set color: ƒ reactiveSetter(newVal)
+        // get size: ƒ reactiveGetter()
+        // set size: ƒ reactiveSetter(newVal)
+        console.log(binding);
+
+        //binding.value (value:
+        // color: (...)
+        // size: (...)
+        // )
 
         let vm = new Vue({
             el: '#app',
@@ -72,6 +70,13 @@
             methods: {
                 handle: function () {
 
+                }
+            },
+            directive: {
+                color: {
+                    bind: function (el, binding) {
+                        el.style, backgroundColor = binding.value.color;
+                    }
                 }
             }
         })

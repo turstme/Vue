@@ -47,6 +47,22 @@ app.all('/axios-server', (request, response) => {
 
 
 });
+app.all('/axios-server2', (request, response) => {
+    //设置响应头，设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin', '*');
+
+    response.setHeader('Access-Control-Allow-Headers', '*');
+    // 设置响应体
+    const data = true;
+    setTimeout(() => {
+        // console.log('收到');
+        response.send(data);
+
+    }, 1000)
+
+
+
+});
 app.all('/jasonp-server', (request, response) => {
     //设置响应头，设置允许跨域
     response.setHeader('Access-Control-Allow-Origin', '*');

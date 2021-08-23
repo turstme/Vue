@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <h1>图书管理</h1>
+
+        <table>
+            <tr>
+                <td>编号：<input type="text" v-model='index' :disabled='flag'></td>
+                <td>名称：<input type="text" v-model='name0'></td>
+                <td><button @click='add'>提交</button></td>
+
+            </tr>
+            <tr>
+                <td>编号</td>
+                <td>名称</td>
+                <td>时间</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for='(item,index) in msg'>
+                <td v-for='(item1,index) in item'>{{item1}}</td>
+                <td @click='edit(item)'>编辑</td>
+                <td @click='del(item.id)'>删除</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                index: '',
+                name0: '',
+                flag: false,
+                editIndex: 0,
+                msg: [{
+
+                    id: 1,
+                    name: '11',
+                    date: '2222',
+
+                },
+                {
+                    id: 2,
+                    name: '22',
+                    date: '2222',
+
+                },
+                {
+                    id: 3,
+                    name: '33',
+                    date: '2222',
+
+                },
+                {
+                    id: 4,
+                    name: '44',
+                    date: '2222',
+
+                },]
+            },
+            methods: {
+                add() {
+                    if (this.index != this.editIndex) {
+                        this.msg.push({
+                            id: this.index,
+                            name: this.name0,
+                            data: new Date(),
+                        })
+                    } else {
+                        this.msg[this.editIndex - 1].name = this.name0
+                    };
+                    this.index = ''
+                    this.name0 = ''
+
+                },
+                edit(item) {
+                    this.flag = true;
+                    this.index = item.id;
+                    this.name0 = item.name;
+                    this.editIndex = this.index
+                    // return editIndex;
+                    console.log(this.editIndex);
+                },
+                del(id) {
+                    this.msg = this.msg.filter(function (item) {
+                        return item.id != id
+                    })
+                }
+            }
+
+
+        })
+
+    </script>
+</body>
+
+</html>

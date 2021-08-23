@@ -12,6 +12,9 @@
 <body>
     <div id="app">
         <input type="text" :value="msg" @input='handle'>
+
+        //$event.target.value ---$event返回的是事件触发的对象类型.target是里面的方法，表示
+        事件是那个对象触发的，返回是触发对象，后面跟触发对象里的属性
         <input type="text" :value="msg" @input='msg = $event.target.value'>
 
 
